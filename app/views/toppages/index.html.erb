@@ -1,7 +1,12 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>ようこそ BKCクラスへ！</h1>
-    <p>BKCクラスとは、立命館大学琵琶湖草津キャンパスに通っている学生が使用でき、学内の授業の評価や出席の有無などを投稿できるSNSです。
-    登録ユーザに対して直接メッセージを送ることもできるので、使わなくなった教科書を譲ってくれないかなどを聞く場合に使えます。</p>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.nickname %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>ようこそ BKCクラスへ！</h1>
+      <p>BKCクラスとは、立命館大学琵琶湖草津キャンパスに通っている学生が使用でき、学内の授業の評価や出席の有無などを投稿できるSNSです。
+      登録ユーザに対して直接メッセージを送ることもできるので、使わなくなった教科書を譲ってくれないかなどを聞く場合に使えます。</p>
+      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
   </div>
-</div>
+<% end %>  

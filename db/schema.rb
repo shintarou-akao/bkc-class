@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180930085345) do
   end
 
   create_table "grades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "year"
+    t.string   "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

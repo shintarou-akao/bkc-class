@@ -1,3 +1,3 @@
 class Grade < ApplicationRecord
-  validates :grade, presence: true, numericality: true
+  validates :year, presence: true
 end

@@ -1,3 +1,3 @@
 class Subject < ApplicationRecord
-  validates :subject, presence: true
+  validates :name, presence: true
 end

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   belongs_to :grade
-  belongs_to :depertment
+  belongs_to :department
   belongs_to :subject
   
   before_save { self.email.downcase! }
