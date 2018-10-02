@@ -16,9 +16,10 @@
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
-      <li><a href="#">過去の投稿</a></li>
+      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>過去の投稿 <span class="badge"><%= @count_posts %></span><% end %></li>
       <li><a href="#">フォロー</a></li>
       <li><a href="#">フォロワー</a></li>
     </ul>
+    <%= render 'posts/posts', posts: @posts %>
   </div>
 </div>
