@@ -7,10 +7,14 @@
         </div>
         <div class="media-body">
           <div>
-            <%= user.nickname %>
+            <%= link_to user.nickname, user_path(user) %>
           </div>
           <div>
-            <p><%= link_to 'プロフィールを見る', user_path(user) %></p>
+            <p>
+              <%= user.grade.year %>／
+              <%= user.department.name %>／
+              <%= user.subject.name %>
+            </p>
           </div>
         </div>
       </li>
