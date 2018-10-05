@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :update]
   
   def create
     @post = current_user.posts.build(post_params)
@@ -18,6 +18,22 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:success] = '投稿を削除しました。'
     redirect_back(fallback_location: root_path)
+  end
+  
+  def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    
+    if @post.update(post_params)
+      flash[:success] = '投稿は正常に更新されました。'
+      redirect_to root_url
+    else
+      flash.now[:danger] = '投稿は更新されませんでした。'
+      render :edit
+    end
   end
   
   private

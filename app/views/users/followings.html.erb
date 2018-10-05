@@ -3,12 +3,18 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= @user.nickname %></h3>
+        <h4 class="panel-title">
+          <%= @user.grade.year %>
+          <%= @user.department.name %>
+          <%= @user.subject.name %>
+        </h4>
       </div>
       <div class="panel-body">
         <img class="media-object img-circle img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>
+    <%= render 'posts/post_button', user: @user %>
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
