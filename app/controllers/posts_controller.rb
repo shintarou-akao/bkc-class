@@ -2,6 +2,12 @@ class PostsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy, :update]
   
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
+  end
+  
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -15,6 +21,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = '投稿を削除しました。'
     redirect_back(fallback_location: root_path)
