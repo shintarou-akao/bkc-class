@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181007104811) do
+ActiveRecord::Schema.define(version: 20181011133255) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20181007104811) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",         limit: 65535
+    t.integer  "user_id"
+    t.integer  "receive_user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["receive_user_id"], name: "index_messages_on_receive_user_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -106,6 +116,8 @@ ActiveRecord::Schema.define(version: 20181007104811) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
+  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "users", column: "receive_user_id"
   add_foreign_key "posts", "lessons"
   add_foreign_key "posts", "teachers"
   add_foreign_key "posts", "users"

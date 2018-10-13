@@ -22,6 +22,11 @@ class User < ApplicationRecord
   
   has_many :comments, dependent: :destroy
   
+  has_many :messages
+  has_many :sent_messages, through: :messages, source: :receive_user 
+  has_many :reverses_of_message, class_name: 'Message', foreign_key: 'receive_user_id'
+  has_many :received_messages, through: :reverses_of_message, source: :user
+  
   def follow(other_user)
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -52,5 +57,11 @@ class User < ApplicationRecord
   
   def favorite?(post)
     self.favorite_posts.include?(post)
+  end
+  
+  def message
+    unless self == other_user
+      self.messages.create(receive_user_id: other_user.id)
+    end
   end
 end
