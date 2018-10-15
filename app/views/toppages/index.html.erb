@@ -1,17 +1,15 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <%= render 'posts/form', post: @post %>
-    </aside>
-    <div class="col-xs-8">
-      <%= render 'posts/posts', posts: @posts %>
-    </div>
+<h2>新規投稿</h2>
+<div class="row">
+  <div class="col-md-4">
+    <%=render 'posts/form', post: @post %>
   </div>
+</div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>ようこそ BKCクラスへ！</h1>
-      <p>BKCクラスとは、立命館大学琵琶湖草津キャンパスに通っている学生が使用でき、授業の評価や出席の有無などを投稿できるSNSです。
+      <h1>ようこそ<br>BKCクラスへ！</h1>
+      <p>BKCクラスとは、立命館大学琵琶湖草津キャンパスに通っている学生が使用でき、授業に関する情報を投稿できるSNSです。
       登録ユーザに対して直接メッセージを送ることもできるので、使わなくなった教科書を譲ってくれないかなどを聞く場合に使えます。</p>
       <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>

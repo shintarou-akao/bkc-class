@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy, :update]
   
+  def index
+    @posts = Post.all.order('created_at DESC').page(params[:page])
+  end
+  
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
@@ -12,7 +16,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = '投稿しました。'
-      redirect_to root_url
+      redirect_to posts_path
     else
       @posts = current_user.feed_posts.order('created_at DESC').page(params[:page])
       flash.now[:danger] = '投稿に失敗しました。'

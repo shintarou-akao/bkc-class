@@ -20,7 +20,7 @@
         <div>
           <%= link_to "コメント", post_path(post), class: 'btn btn-info btn-xs' %><span class="badge"><%= post.comments.count %></span>
           <% if current_user == post.user %>
-            <%= link_to "編集", edit_post_path(post), class: 'btn btn-primary btn-xs' %>
+            <%= link_to "編集", edit_post_path(post), class: 'btn btn-primary btn-xs', data: { turbolinks: false } %>
             <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% else %>
             <%= render 'favorites/favorite_button', post: post %>

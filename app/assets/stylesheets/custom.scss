@@ -1,3 +1,21 @@
 .field_with_errors {
   display: inline-block;
 }
+
+.jumbotron {
+  background:url(university_lessons.jpg) no-repeat;
+  background-size: cover;
+}
+
+.text-center p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@media (max-width: 425px) {
+  .between {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+}
+
