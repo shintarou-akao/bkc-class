@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: bkc-class_production
   username: bkc-class
   password: <%= ENV['BKC-CLASS_DATABASE_PASSWORD'] %>

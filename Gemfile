@@ -57,3 +57,7 @@ gem 'kaminari'
 gem "jquery-turbolinks" # Turbolinksで遷移したときもjQuery.ready()を呼び出してくれる
 gem "select2-rails"
 gem 'seed-fu', '~> 2.3'
+
+group :production do
+  gem 'pg', '0.21.0'
+end
