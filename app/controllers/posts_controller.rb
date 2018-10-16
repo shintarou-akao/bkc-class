@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy, :update]
+  before_action :set_params, only: [:show, :create, :edit]
   
   def index
     @posts = Post.all.order('created_at DESC').page(params[:page])
+    @user = User.find(session[:user_id])
   end
   
   def show
@@ -48,6 +50,10 @@ class PostsController < ApplicationController
   end
   
   private
+  
+  def set_params
+    @user = User.find(session[:user_id])
+  end
   
   def post_params
     params.require(:post).permit(:lesson_id, :teacher_id, :lesson_evaluation, :lesson_level, :text_necessity, :attendance, :additional_explanation)

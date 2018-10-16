@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers, :favorites]
+  before_action :require_user_logged_in, only: [:index, :show, :destroy, :followings, :followers, :favorites]
   
   def index
     @users = User.all.page(params[:page])
+    @user = User.find(session[:user_id])
   end
 
   def show
@@ -25,6 +26,13 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = '退会しました。'
+    redirect_to root_path
   end
   
   def followings
