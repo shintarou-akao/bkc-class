@@ -53,6 +53,10 @@ class UsersController < ApplicationController
     counts(@user)
   end
   
+  def subject_select
+    @subjects = params[:user_department_id] ? Subject.where(department_id: params[:user_department_id]) : []
+  end
+  
   private
   
   def user_params
