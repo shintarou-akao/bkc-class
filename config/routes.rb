@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   
-  resources :users, only: [:index, :show, :new, :destroy, :create] do
+  resources :users do
     resources :messages, only: [:index, :create, :destroy]
     collection do
       get :subject_select

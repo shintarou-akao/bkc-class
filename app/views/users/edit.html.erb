@@ -1,0 +1,64 @@
+<div class="text-center">
+  <h1>編集ページ</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@user) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+    
+      <div class="form-group">
+        <%= f.label :grade_id, '学年' %>
+        <%= f.collection_select :grade_id, Grade.all, :id, :year, :prompt => "選択してください", class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :department_id, '学部' %>
+        <%= f.collection_select :department_id, Department.all, :id, :name, :prompt => "選択してください ", class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :subject_id, '学科' %>
+        <span id='subject_result'>
+          <%= collection_select :user, :subject_id, [], :id, :name, :prompt => "選択してください", class: 'form-control' %>
+        </span>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :nickname, 'ニックネーム' %>
+        <%= f.text_field :nickname, :placeholder => "例）タロウ", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, :placeholder => "例）taro1234@yahoo.co.jp", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'パスワード（確認用）' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '登録する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('#user_department_id').change(function() {
+    console.log("hello");
+    $.ajax({
+      url: '<%= subject_select_users_path %>',
+      type: 'get',
+      data:{
+        user_department_id: $('#user_department_id').val()
+      }
+    })
+  });
+</script>

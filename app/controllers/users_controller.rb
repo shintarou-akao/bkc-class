@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :destroy, :followings, :followers, :favorites]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :destroy, :followings, :followers, :favorites]
   
   def index
     @users = User.all.page(params[:page])
@@ -10,6 +10,25 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.order('created_at DESC').page(params[:page])
     counts(@user)
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if current_user == @user
+      if @user.update(user_params)
+        flash[:success] = 'ユーザー情報を編集しました。'
+        render :edit
+      else
+        flash[:danger] = 'ユーザー情報の編集に失敗しました。'
+        render :edit
+      end
+    else
+      redirect_to root_url
+    end
   end
   
   def new
