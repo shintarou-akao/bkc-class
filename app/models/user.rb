@@ -4,6 +4,8 @@ class User < ApplicationRecord
   belongs_to :subject
   
   before_save { self.email.downcase! }
+  validates :department, presence: true
+  validates :subject, presence: true
   validates :nickname, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },

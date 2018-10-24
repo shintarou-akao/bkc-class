@@ -1,1 +1,1 @@
-$("#subject_result").html('<%=j collection_select :user, :subject_id, @subjects, :id, :name, :prompt => "選択してください", class: 'form-control' %>');q
+$("#subject_result").html('<%=j collection_select :user, :subject_id, @subjects, :id, :name, {:prompt => "選択してください"}, class: 'form-control' %>');q
