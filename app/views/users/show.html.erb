@@ -10,7 +10,12 @@
         </h4>
       </div>
       <div class="panel-body">
-        <img class="media-object img-circle img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <% if @user.image? %>
+　　      <%= image_tag @user.image.thumb.url %>
+　      <% else %>
+　　      <!--%= image_tag 'noimage.gif' %-->
+          <img class="media-object img-circle img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <% end %>  
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>

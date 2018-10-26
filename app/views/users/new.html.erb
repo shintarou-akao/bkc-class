@@ -7,7 +7,12 @@
 
     <%= form_for(@user) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
-    
+
+　　    <%= f.label :image, '画像' %>
+　　    <%= image_tag @user.image.thumb.url if @user.image? %>
+　      <%= f.file_field :image %>
+　      <%= f.hidden_field :image_cache %>
+      
       <div class="form-group">
         <%= f.label :grade_id, '学年' %>
         <%= f.collection_select :grade_id, Grade.all, :id, :year, {:prompt => "選択してください"}, class: 'form-control' %>

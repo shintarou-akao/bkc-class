@@ -29,6 +29,8 @@ class User < ApplicationRecord
   has_many :reverses_of_message, class_name: 'Message', foreign_key: 'receive_user_id', dependent: :destroy
   has_many :received_messages, through: :reverses_of_message, source: :user
   
+  mount_uploader :image, ImageUploader
+  
   def follow(other_user)
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)
