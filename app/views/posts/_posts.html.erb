@@ -2,8 +2,8 @@
   <% posts.each do |post| %>
     <li class="media">
       <div class="media-left">
-        <% if @user.image? %>
-　　      <%= image_tag @user.image.thumb.url, { size: 50 } %>
+        <% if post.user.image? %>
+　　      <%= image_tag post.user.image.thumb.url, { size: 50 } %>
 　      <% else %>
 　　      <!--%= image_tag 'noimage.gif' %-->
           <img class="media-object img-circle" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
