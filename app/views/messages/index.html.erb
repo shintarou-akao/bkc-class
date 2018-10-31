@@ -3,7 +3,11 @@
 <% @messages.each do |message| %>
   <div>
     <div class="media-left">
-        <img class="media-object img-circle" src="<%= gravatar_url(message.user, { size: 50 }) %>" alt="">
+        <% if message.user.image? %>
+　　      <%= image_tag message.user.image.thumb.url, { size: 50 } %>
+　      <% else %>
+          <img class="media-object img-circle" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+        <% end %>
     </div>
     <div class="media-body">
         <div>
