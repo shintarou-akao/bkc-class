@@ -60,7 +60,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :resize_to_limit => [700, 700]
 
   # 保存形式をJPGにする
-  process :convert => 'jpg'
+  # process :convert => 'jpg'
 
   # サムネイルを生成する設定
   version :thumb do
