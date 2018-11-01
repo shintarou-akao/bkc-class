@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy, :update]
+  before_action :correct_user, only: [:destroy, :update, :edit]
   before_action :set_params, only: [:show, :create, :edit]
   
   def index
