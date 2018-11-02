@@ -5,7 +5,7 @@
         <% if @post.user.image? %>
 　　      <%= image_tag @post.user.image.thumb.url, { size: 50 } %>
 　      <% else %>
-          <img class="media-object img-circle" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+          <img class="media-object img-circle" src="<%= gravatar_url(post.user, { size: 50 }) %>" alt="">
         <% end %>
       </div>
       <div class="media-body">
