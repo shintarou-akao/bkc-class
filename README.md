@@ -1,24 +1,11 @@
-# README
+## Implemented function
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- ログイン機能
+- 記事投稿/削除機能
+- 記事一覧/表示機能
+- フォロー/フォロワー機能
+- ユーザー登録・編集・退会機能
+- ページネーション機能
+- 画像ファイルアップロード機能
+- お気に入り/コメント機能
+- ダイレクトメッセージ機能
